@@ -127,7 +127,7 @@ angular.module('angular-tiny-calendar', []).directive('tinyCalendar', [ function
                         scope.selected = day;
                     } else {
                         scope.currentMonth = moment(day.date);
-                        scope.month = buildMonth(scope.currentMonth, scope.events);
+                        scope.month = buildMonth(scope.currentMonth, scope.events, attrs.firstDay);
                         scope.selected = firstSelected(scope.month, day.date);
                     }
 
@@ -136,21 +136,21 @@ angular.module('angular-tiny-calendar', []).directive('tinyCalendar', [ function
 
                 scope.today = function() {
                     scope.currentMonth = moment(today);
-                    scope.month = buildMonth(scope.currentMonth, scope.events);
+                    scope.month = buildMonth(scope.currentMonth, scope.events, attrs.firstDay);
                     scope.selected = firstSelected(scope.month, removeTime(scope.currentMonth).format());
                 };
 
                 scope.previous = function() {
                     scope.selected = null;
                     scope.currentMonth.subtract(1, 'months');
-                    scope.month = buildMonth(scope.currentMonth, scope.events);
+                    scope.month = buildMonth(scope.currentMonth, scope.events, attrs.firstDay);
 
                 };
 
                 scope.next = function() {
                     scope.selected = null;
                     scope.currentMonth.add(1, 'months');
-                    scope.month = buildMonth(scope.currentMonth, scope.events);
+                    scope.month = buildMonth(scope.currentMonth, scope.events, attrs.firstDay);
                 };
 
 
